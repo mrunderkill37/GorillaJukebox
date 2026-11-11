@@ -1,0 +1,11 @@
+/var/home/mrunderkill/Documents/GorillaJukebox/bin/Release/netstandard2.1/GorillaJukebox.deps.json
+/var/home/mrunderkill/Documents/GorillaJukebox/bin/Release/netstandard2.1/GorillaJukebox.dll
+/var/home/mrunderkill/Documents/GorillaJukebox/bin/Release/netstandard2.1/GorillaJukebox.pdb
+/var/home/mrunderkill/Documents/GorillaJukebox/obj/Release/netstandard2.1/GorillaJukebox.csproj.AssemblyReference.cache
+/var/home/mrunderkill/Documents/GorillaJukebox/obj/Release/netstandard2.1/GorillaJukebox.IgnoresAccessChecksTo.cs
+/var/home/mrunderkill/Documents/GorillaJukebox/obj/Release/netstandard2.1/GorillaJukebox.GeneratedMSBuildEditorConfig.editorconfig
+/var/home/mrunderkill/Documents/GorillaJukebox/obj/Release/netstandard2.1/GorillaJukebox.AssemblyInfoInputs.cache
+/var/home/mrunderkill/Documents/GorillaJukebox/obj/Release/netstandard2.1/GorillaJukebox.AssemblyInfo.cs
+/var/home/mrunderkill/Documents/GorillaJukebox/obj/Release/netstandard2.1/GorillaJukebox.csproj.CoreCompileInputs.cache
+/var/home/mrunderkill/Documents/GorillaJukebox/obj/Release/netstandard2.1/GorillaJukebox.dll
+/var/home/mrunderkill/Documents/GorillaJukebox/obj/Release/netstandard2.1/GorillaJukebox.pdb

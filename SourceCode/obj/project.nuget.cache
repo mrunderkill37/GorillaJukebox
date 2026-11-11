@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "iMIpLksPn7E=",
+  "success": true,
+  "projectFilePath": "/var/home/mrunderkill/Documents/GorillaJukebox/GorillaJukebox.csproj",
+  "expectedPackageFiles": [
+    "/home/mrunderkill/.nuget/packages/bepinex.assemblypublicizer.msbuild/0.4.3/bepinex.assemblypublicizer.msbuild.0.4.3.nupkg.sha512"
+  ],
+  "logs": []
+}

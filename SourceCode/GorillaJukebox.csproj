@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <PlatformTarget>x64</PlatformTarget>
+    <AssemblyName>GorillaJukebox</AssemblyName>
+    <RootNamespace>GorillaJukebox</RootNamespace>
+    <DebugType Condition="'$(Configuration)'=='Debug'">embedded</DebugType>
+
+    <!-- CHANGE THIS to your Gorilla Tag install folder (or pass -p:GamePath="..." to dotnet build). -->
+    <GamePath Condition="'$(GamePath)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Gorilla Tag</GamePath>
+    <GameAssemblyPath>$(GamePath)\Gorilla Tag_Data\Managed</GameAssemblyPath>
+    <DependenciesPath>$(GamePath)\BepInEx\core</DependenciesPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Lets the mod reach non-public game members. -->
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- BepInEx + Harmony -->
+    <Reference Include="BepInEx"><HintPath>$(DependenciesPath)\BepInEx.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(DependenciesPath)\0Harmony.dll</HintPath><Private>false</Private></Reference>
+
+    <!-- Game code -->
+    <Reference Include="Assembly-CSharp" Publicize="true"><HintPath>$(GameAssemblyPath)\Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Assembly-CSharp-firstpass"><HintPath>$(GameAssemblyPath)\Assembly-CSharp-firstpass.dll</HintPath><Private>false</Private></Reference>
+
+    <!-- Unity -->
+    <Reference Include="UnityEngine"><HintPath>$(GameAssemblyPath)\UnityEngine.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(GameAssemblyPath)\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.AudioModule"><HintPath>$(GameAssemblyPath)\UnityEngine.AudioModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(GameAssemblyPath)\UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule"><HintPath>$(GameAssemblyPath)\UnityEngine.JSONSerializeModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.TextRenderingModule"><HintPath>$(GameAssemblyPath)\UnityEngine.TextRenderingModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.XRModule"><HintPath>$(GameAssemblyPath)\UnityEngine.XRModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule"><HintPath>$(GameAssemblyPath)\UnityEngine.UnityWebRequestModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule"><HintPath>$(GameAssemblyPath)\UnityEngine.UnityWebRequestAudioModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>$(GameAssemblyPath)/UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.TextMeshPro"><HintPath>$(GameAssemblyPath)\Unity.TextMeshPro.dll</HintPath><Private>false</Private></Reference>
+
+    <!-- SteamVR input (right joystick click on the Steam version) -->
+    <Reference Include="SteamVR"><HintPath>$(GameAssemblyPath)\SteamVR.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SteamVR_Actions"><HintPath>$(GameAssemblyPath)\SteamVR_Actions.dll</HintPath><Private>false</Private></Reference>
+
+    <!-- Networking types the game's room code refers to. If the compiler asks for another
+         game DLL (error CS0012), add a Reference for it here in the same way. -->
+    <Reference Include="PhotonUnityNetworking"><HintPath>$(GameAssemblyPath)\PhotonUnityNetworking.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PhotonRealtime"><HintPath>$(GameAssemblyPath)\PhotonRealtime.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Photon3Unity3D"><HintPath>$(GameAssemblyPath)\Photon3Unity3D.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Fusion.Common"><HintPath>$(GameAssemblyPath)\Fusion.Common.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Fusion.Realtime"><HintPath>$(GameAssemblyPath)\Fusion.Realtime.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Fusion.Runtime"><HintPath>$(GameAssemblyPath)\Fusion.Runtime.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Fusion.Unity"><HintPath>$(GameAssemblyPath)\Fusion.Unity.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PlayFab"><HintPath>$(GameAssemblyPath)\PlayFab.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+
+  <!-- After a successful build, copy the plugin into BepInEx\plugins if that folder exists. -->
+  <Target Name="CopyToGame" AfterTargets="Build" Condition="Exists('$(GamePath)\BepInEx\plugins')">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GamePath)\BepInEx\plugins" />
+  </Target>
+
+</Project>

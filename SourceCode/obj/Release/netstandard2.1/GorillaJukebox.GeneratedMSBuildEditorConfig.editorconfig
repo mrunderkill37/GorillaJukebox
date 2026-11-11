@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = GorillaJukebox
+build_property.ProjectDir = /var/home/mrunderkill/Documents/GorillaJukebox/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
